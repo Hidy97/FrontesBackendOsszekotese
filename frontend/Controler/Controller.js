@@ -5,6 +5,7 @@ class Controller{
     constructor(){
         this.dataService = new DataService();
         this.dataService.getAxiosData(ALAPVEGPONT + "writers", this.megjelenit);
+        this.dataService.postAxiosData(ALAPVEGPONT + "writers", this.megjelenit);
     }
 
     megjelenit(list){

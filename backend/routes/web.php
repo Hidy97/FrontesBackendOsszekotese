@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/writers', [WriterController::class,'index']);
-//Route::get('/writers', [WriterController::class,'store']);
+Route::post('/writers', [WriterController::class,'store']);
 //Route::get('/writers/{id}', [WriterController::class,'update']);
 //Route::get('/writers/{id}', [WriterController::class,'destroy']);
