@@ -1,0 +1,35 @@
+import SorView from "./SorView.js";
+import Urlap from "./Urlap.js";
+
+class TablaView {
+    #list = [];
+    constructor(list, szuloElem) {
+        this.#list = list;
+        szuloElem.append(`<table class="table table-bordered table-striped">`);
+        this.tablaElem = szuloElem.children("table");
+        //console.log(this.tablaElem);
+        //this.tablazatbaIr();
+        this.tablazatbaIr2();
+
+    }
+
+
+    tablazatbaIr() {
+        let txt = "";
+        this.#list.forEach((elem) => {
+            txt += "<tr>";
+            txt += `<td>${elem}</td>`;
+            txt += "</tr>";
+        })
+        this.tablaElem.html(txt);
+    }
+
+    tablazatbaIr2() {
+        let txt = "";
+        this.#list.forEach((elem) => {
+            new MegjelenitSor(elem, this.tablaElem)
+        });
+    }
+}
+
+export default TablaView;

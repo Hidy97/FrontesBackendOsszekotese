@@ -1,0 +1,51 @@
+class SorView {
+    //ez, a táblázat egy sorát jelenti
+    #adat = {};
+    constructor(adat, szuloElem) {
+        this.#adat = adat;
+        this.tablaElem = szuloElem;
+        //console.log(this.tablaElem);
+        this.#sor();
+        this.sorElem = this.tablaElem.children("tr:last-child");
+
+        this.pipaGomb = this.sorElem.children("td").children(".kesz");
+        //console.log(this.pipaGomb);
+        this.torolGomb = this.sorElem.children("td").children(".torol");
+        this.megseGomb = this.sorElem.children("td").children(".megse");
+
+        this.pipaGomb.on("click", () => {
+            //console.log(this);
+            this.sorElem.css("background-color", "teal");
+        });
+
+        this.torolGomb.on("click", () => {
+            //console.log(this);
+            //this.sorElem.empty(this);
+            this.#esemenyTrigger("torles");
+        });
+
+        this.megseGomb.on("click", () => {
+            //console.log(this);
+            this.sorElem.css("background-color", "white");
+        });
+    }
+
+    #sor() {
+        let txt = "";
+        txt += "<tr>";
+        for (const key in this.#adat) {
+                    const element = this.#adat[key];
+                    txt += `<td>${element}</td>`;
+            }
+        txt += `<td><span class="kesz">✔️</span><span class="megse">❌</span><span class="torol">🗑️</span></td>`
+        txt += "</tr>";
+        this.tablaElem.append(txt);
+    }
+
+    #esemenyTrigger(esemenynev){
+        const esemenyem = new CustomEvent(esemenynev, {detail: this});
+        window.dispatchEvent(esemenyem);
+    }
+}
+
+export default SorView;
